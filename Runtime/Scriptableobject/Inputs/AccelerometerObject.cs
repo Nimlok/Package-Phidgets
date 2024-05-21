@@ -6,15 +6,15 @@ using UnityEngine;
 namespace Phidgets
 {
     [CreateAssetMenu(menuName = "Phidget/Inputs/Accelerometer")]
-    public class PhidgetAccelerometer : PhidgetBaseObject
+    public class Accelerometer : PhidgetBaseObject
     {
         public Action<Vector3> OnStateChange;
     
-        private Accelerometer accelerometer => (Accelerometer)Phidget;
+        private Phidget22.Accelerometer accelerometer => (Phidget22.Accelerometer)Phidget;
     
         public override void InitialisePhidget()
         {
-            Phidget = new Accelerometer();
+            Phidget = new Phidget22.Accelerometer();
             accelerometer.AccelerationChange += StateChange;
             base.InitialisePhidget();
         }

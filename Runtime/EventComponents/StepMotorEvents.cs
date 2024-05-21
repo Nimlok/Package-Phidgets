@@ -1,12 +1,11 @@
-using Phidgets;
 using UnityEngine;
 
-namespace a
+namespace Phidgets.Events
 {
-    public class PhidgetStepMotorEvents: MonoBehaviour
+    public class StepMotorEvents: MonoBehaviour
     {
         [SerializeField] private float target;
-        [SerializeField] private PhidgetStepMotorObject stepMotorObject;
+        [SerializeField] private StepMotorObject stepMotorObject;
 
         public void AddMotorTarget(float motorTarget)
         {

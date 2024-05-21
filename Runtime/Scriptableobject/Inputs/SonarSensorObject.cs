@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Phidgets
 {
     [CreateAssetMenu(menuName = "Phidget/Inputs/Sonar")]
-    public class PhidgetSonarSensorObject : PhidgetBaseObject
+    public class SonarSensorObject : PhidgetBaseObject
     {
         private DistanceSensor sonarSensor => (DistanceSensor)Phidget;
 

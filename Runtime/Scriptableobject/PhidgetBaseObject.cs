@@ -1,20 +1,22 @@
 using Phidget22.Events;
+//using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Phidgets
 {
+    //[InlineEditor]
     public abstract class PhidgetBaseObject: ScriptableObject
     {
         [SerializeField] protected int port;
         [SerializeField] protected bool debug;
         
-        protected int SerialID;
+        private int serialID;
 
         protected Phidget22.Phidget Phidget;
         
         public int SetSerial
         {
-            set => SerialID = value;
+            set => serialID = value;
         }
 
         public virtual void InitialisePhidget()
@@ -22,7 +24,7 @@ namespace Phidgets
             if (Phidget == null)
                 return;
             
-            Phidget.DeviceSerialNumber = SerialID;
+            Phidget.DeviceSerialNumber = serialID;
             Phidget.HubPort = port;
             Phidget.Attach += OnAttachHandler;
             Phidget.Open(500);
@@ -46,7 +48,7 @@ namespace Phidgets
         protected void LogState(string state)
         {
             if(debug)
-                Debug.Log($"<color=lightblue>Phidget: {SerialID}: {port}</color> {state}");
+                Debug.Log($"<color=lightblue>Phidget: {serialID}: {port}</color> <color=orange>{state}</color>");
         }
     }
 }

@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Phidgets.Runtime.EventComponents
+namespace Phidgets.Events
 {
-    
-    public class PhidgetSoundSensorEvent: MonoBehaviour
+    public class SoundSensorEvent: MonoBehaviour
     {
         [SerializeField] private PhidgetSoundSensor phidgetSoundSensor;
         public UnityEvent<float> OnSoundChange;

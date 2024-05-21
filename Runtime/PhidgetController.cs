@@ -8,7 +8,9 @@ namespace PhidgetControls
 {
     public class PhidgetController : MonoBehaviour
     {
-        private List<PhidgetHubObject> hubs = new List<PhidgetHubObject>();
+        [SerializeField]private List<PhidgetBaseObject> IndividualPhidgets = new List<PhidgetBaseObject>();
+        [SerializeField] private List<PhidgetHubObject> hubs = new List<PhidgetHubObject>();
+        
         private const string resourcesPath = "Phidgets";
         
         #region  UNITY functions
@@ -17,6 +19,11 @@ namespace PhidgetControls
             foreach (var hub in hubs)
             {
                 hub.Close();
+            }
+
+            foreach (var phidget in IndividualPhidgets)
+            {
+                phidget.ClosePhidget();
             }
         
             if (Application.isEditor)
@@ -32,7 +39,7 @@ namespace PhidgetControls
         void Awake()
         {
             LoadHubs();
-            Initialise();
+            InitialiseHubs();
         }
         #endregion
 
@@ -44,7 +51,7 @@ namespace PhidgetControls
             Debug.Log($"Loaded Hubs: {hubs.Count}");
         }
         
-        private void Initialise()
+        private void InitialiseHubs()
         {
             if (hubs.Count <= 0)
                 return;
@@ -52,6 +59,17 @@ namespace PhidgetControls
             foreach (var hub in hubs)
             {
                 hub.Initialise();
+            }
+        }
+
+        private void InitialisePhidgets()
+        {
+            if (IndividualPhidgets.Count <= 0)
+                return;
+
+            foreach (var phidget in IndividualPhidgets)
+            {
+                phidget.InitialisePhidget();
             }
         }
     }

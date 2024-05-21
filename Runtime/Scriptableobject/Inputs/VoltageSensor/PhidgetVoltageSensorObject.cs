@@ -18,7 +18,7 @@ namespace Phidgets
             Phidget.IsHubPortDevice = true;
             voltageRatioInput.SensorChange += VoltageRatioChange;
             base.InitialisePhidget();
-            voltageRatioInput.SensorType = VoltageRatioSensorType.PN_1113;
+            //voltageRatioInput.SensorType = VoltageRatioSensorType.PN_1113;
         }
 
         private void VoltageRatioChange(object sender, VoltageRatioInputSensorChangeEventArgs e)

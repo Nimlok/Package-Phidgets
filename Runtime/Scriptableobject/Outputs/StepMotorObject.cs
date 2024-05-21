@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Phidgets
 {
     [CreateAssetMenu(menuName = "Phidget/Outputs/StepMotor")]
-    public class PhidgetStepMotorObject: PhidgetBaseObject
+    public class StepMotorObject: PhidgetBaseObject
     {
         [SerializeField] private int acceleration = 7500;
         [SerializeField] private int velocityLimit = 10000;

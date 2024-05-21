@@ -1,28 +1,27 @@
 using System;
-using Phidget22;
 using Phidget22.Events;
 using UnityEngine;
 
 namespace Phidgets
 {
     [CreateAssetMenu(menuName = "Phidget/Inputs/DigitalInput")]
-    public class PhidgetDigitalInput: PhidgetBaseObject
+    public class DigitalInput: PhidgetBaseObject
     {
         public Action<bool> OnStateChange;
         
-        private DigitalInput DigitalInput => (DigitalInput)Phidget;
+        private Phidget22.DigitalInput PhidgetDigitalInput => (Phidget22.DigitalInput)Phidget;
          
         public override void InitialisePhidget()
         {
-            Phidget = new DigitalInput();
-            DigitalInput.StateChange += StateChange;
-            DigitalInput.IsHubPortDevice = true;
+            Phidget = new Phidget22.DigitalInput();
+            PhidgetDigitalInput.StateChange += StateChange;
+            PhidgetDigitalInput.IsHubPortDevice = true;
             base.InitialisePhidget();
         }
 
         public override void ClosePhidget()
         {
-            DigitalInput.StateChange -= StateChange;
+            PhidgetDigitalInput.StateChange -= StateChange;
             base.ClosePhidget();
         }
 

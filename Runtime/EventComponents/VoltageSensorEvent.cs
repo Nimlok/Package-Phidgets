@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Phidgets
+namespace Phidgets.Events
 {
-    public class PhidgetVoltageSensorEvent : MonoBehaviour
+    public class VoltageSensorEvent : MonoBehaviour
     {
         [SerializeField] private PhidgetVoltageSensorObject phidgetVoltageRatio;
         

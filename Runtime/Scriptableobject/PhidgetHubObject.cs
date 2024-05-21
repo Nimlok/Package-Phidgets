@@ -1,6 +1,7 @@
 using System;
 using Phidget22;
 using Phidget22.Events;
+//using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Phidgets
@@ -8,6 +9,7 @@ namespace Phidgets
     [CreateAssetMenu(menuName = "Phidget/Hub")]
     public class PhidgetHubObject : ScriptableObject
     {
+        //[RequiredListLength(null, 6)]
         public PhidgetBaseObject[] phidgets = new PhidgetBaseObject[6];
         
         private Hub hub;
