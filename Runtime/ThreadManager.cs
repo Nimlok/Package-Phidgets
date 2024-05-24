@@ -2,46 +2,53 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThreadManager : MonoBehaviour
+
+//TODO: DS 24/05/24 Remove from namespace once decided if in master template
+namespace Phidgets
 {
-    public static ThreadManager instance;
-    Queue<Action> executeOnMainThread = new();
-    Action currentAction;
-
-    private void Awake()
+    public class ThreadManager : MonoBehaviour
     {
-        instance ??= this;
+        public static ThreadManager instance;
+        Queue<Action> executeOnMainThread = new();
+        Action currentAction;
+
+        private void Awake()
+        {
+            instance ??= this;
         
-        if (instance != this)
-        {
-            Destroy(this); 
+            if (instance != this)
+            {
+                Destroy(this); 
+            }
         }
-    }
 
-    private void FixedUpdate() => UpdateMainThread();
+        private void FixedUpdate() => UpdateMainThread();
 
-    void UpdateMainThread()
-    {
-        while (executeOnMainThread.Count > 0)
+        void UpdateMainThread()
         {
-            currentAction = null;
+            while (executeOnMainThread.Count > 0)
+            {
+                currentAction = null;
+                lock (executeOnMainThread)
+                {
+                    if (executeOnMainThread.Count > 0)
+                    {
+                        currentAction = executeOnMainThread.Dequeue();
+                    }
+                }
+            
+                currentAction?.Invoke();
+            }
+        }
+
+        public void AddToMainThread(Action action)
+        {
             lock (executeOnMainThread)
             {
-                if (executeOnMainThread.Count > 0)
-                {
-                    currentAction = executeOnMainThread.Dequeue();
-                }
+                executeOnMainThread.Enqueue(action);
             }
-            
-            currentAction?.Invoke();
-        }
-    }
-
-    public void AddToMainThread(Action action)
-    {
-        lock (executeOnMainThread)
-        {
-            executeOnMainThread.Enqueue(action);
         }
     }
 }
+
+
