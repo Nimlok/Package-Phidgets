@@ -38,6 +38,12 @@ namespace Phidgets
             Phidget.Close();
             Phidget = null;
         }
+
+        //DS 14/0/624 For testing in editor
+        public virtual void TriggerPhidget()
+        {
+            Debug.Log($"<color=lightblue>Phidget: {serialID}: {port}</color> <color=orange>Triggered</color>");
+        }
         
         protected virtual void OnAttachHandler(object sender, AttachEventArgs e)
         {

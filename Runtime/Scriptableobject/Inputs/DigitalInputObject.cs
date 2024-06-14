@@ -25,6 +25,13 @@ namespace Phidgets
             base.ClosePhidget();
         }
 
+        //DS 14/0/624 For testing in editor
+        public override void TriggerPhidget()
+        {
+            base.TriggerPhidget();
+            OnStateChange?.Invoke(true);
+        }
+        
         private void StateChange(object o, DigitalInputStateChangeEventArgs e)
         {
             LogState(e.State.ToString());

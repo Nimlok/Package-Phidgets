@@ -12,6 +12,8 @@ namespace PhidgetControls
         [SerializeField] private List<PhidgetHubObject> hubs = new List<PhidgetHubObject>();
         
         private const string resourcesPath = "Phidgets";
+
+        public List<PhidgetHubObject> GetHubs => hubs;
         
         #region  UNITY functions
         private void OnApplicationQuit()
@@ -40,9 +42,23 @@ namespace PhidgetControls
         {
             LoadHubs();
             InitialiseHubs();
+            InitialisePhidgets();
         }
         #endregion
 
+        //DS 14/0/624 For testing in editor
+        public void TriggerPhidget(int hubNumber, int phidgetNumber)
+        {
+            if (hubs.Count <= 0)
+                return;
+
+            if (hubNumber > hubs.Count)
+                return;
+            
+            var hub = hubs[hubNumber];
+            hub.TriggerPhidget(phidgetNumber);
+        }
+        
         private void LoadHubs()
         {
             if (hubs.Count > 0)

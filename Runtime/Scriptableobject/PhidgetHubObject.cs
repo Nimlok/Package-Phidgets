@@ -33,6 +33,19 @@ namespace Phidgets
                 phidget.ClosePhidget();
             }
         }
+
+        public void TriggerPhidget(int phidgetNumber)
+        {
+            if (phidgetNumber > phidgets.Length)
+                return;
+
+            var phidget = phidgets[phidgetNumber];
+
+            if (phidget == null)
+                return;
+
+            phidget.TriggerPhidget();
+        }
         
         private void InitialiseHub()
         {
