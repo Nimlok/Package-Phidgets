@@ -1,25 +1,22 @@
+using Phidgets.EventComponents;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Phidgets.Events
 {
-    public class VoltageRatioEvent: MonoBehaviour
+    public class VoltageRatioEvent: BasePhidgetEvent
     {
-        [SerializeField] private PhidgetVoltageObject phidgetVoltageRatio;
-        
         [Space]
-        [SerializeField] private UnityEvent<float> unityEvent;
+        [SerializeField] private UnityEvent<float> onVoltageChange;
 
         private void OnEnable()
         {
-            if (phidgetVoltageRatio != null)
-                phidgetVoltageRatio.voltageChanged += (voltage) => unityEvent?.Invoke(voltage);
+            PhidgetControllerEvents.AddListener?.Invoke(o => onVoltageChange?.Invoke((float)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
         }
         
         private void OnDisable()
         {
-            if (phidgetVoltageRatio != null)
-                phidgetVoltageRatio.voltageChanged -= (voltage) => unityEvent?.Invoke(voltage);
+            PhidgetControllerEvents.RemoveListener?.Invoke(o => onVoltageChange?.Invoke((float)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
         }
     }
 }

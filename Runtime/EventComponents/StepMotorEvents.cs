@@ -1,37 +1,20 @@
+using Phidgets.EventComponents;
 using UnityEngine;
 
 namespace Phidgets.Events
 {
-    public class StepMotorEvents: MonoBehaviour
+    public class StepMotorEvents: BasePhidgetEvent
     {
-        [SerializeField] private float target;
-        [SerializeField] private StepMotorObject stepMotorObject;
+        [Space,SerializeField] private float target;
 
-        public void AddMotorTarget(float motorTarget)
+        public void SetMotorPosition(float targetPosition)
         {
-            if (stepMotorObject == null)
-            {
-                Debug.LogWarning($"Missing StepMotorObject: {gameObject.name}");
-                return;
-            }
-            
-            stepMotorObject.AddCurrentPosition(target);
+            PhidgetControllerEvents.ActivatePhidget?.Invoke(targetPosition, basePhidgetData.port, basePhidgetData.GetSerialNumber());
         }
-
-        public void AddMotorTarget()
+        
+        public void SetMotorPosition()
         {
-            AddMotorTarget(target);
-        }
-
-        public void SetMotorTarget(float target)
-        {
-            if (stepMotorObject == null)
-            {
-                Debug.LogWarning($"Missing StepMotorObject: {gameObject.name}");
-                return;
-            }
-            
-            stepMotorObject.MoveToTarget(target);
+            PhidgetControllerEvents.ActivatePhidget?.Invoke(target, basePhidgetData.port, basePhidgetData.GetSerialNumber());
         }
     }
 }

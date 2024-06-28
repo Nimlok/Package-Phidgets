@@ -1,23 +1,20 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Phidgets.Events
+namespace Phidgets.EventComponents
 {
-    public class DigitalInputEvent : MonoBehaviour
+    public class DigitalInputEvent : BasePhidgetEvent
     {
-        [SerializeField] private DigitalInput digitalInput;
         [SerializeField] private UnityEvent<bool> onDigitalStateChange;
-
+        
         private void OnEnable()
         {
-            if (digitalInput != null)
-                digitalInput.OnStateChange += (state) => onDigitalStateChange?.Invoke(state);
+            PhidgetControllerEvents.AddListener?.Invoke(o => onDigitalStateChange?.Invoke((bool)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
         }
 
         private void OnDisable()
         {
-            if (digitalInput != null)
-                digitalInput.OnStateChange -= (state) => onDigitalStateChange?.Invoke(state);
+           PhidgetControllerEvents.RemoveListener?.Invoke(o => onDigitalStateChange?.Invoke((bool)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
         }
     }
 }

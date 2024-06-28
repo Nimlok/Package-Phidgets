@@ -1,23 +1,21 @@
+using Phidgets.EventComponents;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Phidgets.Events
 {
-    public class AccelerometerEvent : MonoBehaviour
+    public class AccelerometerEvent : BasePhidgetEvent
     {
-        [SerializeField] private Accelerometer accelerometer;
         [SerializeField] private UnityEvent<Vector3> OnAccelerometerChange;
 
         private void OnEnable()
         {
-            if (accelerometer != null)
-                accelerometer.OnStateChange += (vector) => OnAccelerometerChange?.Invoke(vector);
+            PhidgetControllerEvents.AddListener?.Invoke((soundLevel) => OnAccelerometerChange?.Invoke((Vector3)soundLevel), basePhidgetData.port, basePhidgetData.hubSerialNumber);
         }
 
         private void OnDisable()
         {
-            if (accelerometer != null)
-                accelerometer.OnStateChange -= (vector) => OnAccelerometerChange?.Invoke(vector);
+            PhidgetControllerEvents.RemoveListener?.Invoke((soundLevel) => OnAccelerometerChange?.Invoke((Vector3)soundLevel), basePhidgetData.port, basePhidgetData.hubSerialNumber);
         }
     }
 }
