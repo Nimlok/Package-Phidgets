@@ -4,19 +4,19 @@ using UnityEngine.Events;
 
 namespace Phidgets.Events
 {
-    public class VoltageRatioEvent: BasePhidgetEvent
+    public class VoltageRatioEvent: InputPhidgetEvent
     {
         [Space]
         [SerializeField] private UnityEvent<float> onVoltageChange;
-
-        private void OnEnable()
-        {
-            PhidgetControllerEvents.AddListener?.Invoke(o => onVoltageChange?.Invoke((float)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
-        }
         
-        private void OnDisable()
+        protected override void AddListener()
         {
-            PhidgetControllerEvents.RemoveListener?.Invoke(o => onVoltageChange?.Invoke((float)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
+            ListenerToAdd(o => onVoltageChange?.Invoke((float)o));
+        }
+
+        protected override void RemoveListener()
+        {
+            ListenerToRemove(o => onVoltageChange?.Invoke((float)o));
         }
     }
 }

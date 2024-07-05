@@ -32,8 +32,44 @@ namespace Phidgets.EventComponents
     }
     
     [Serializable]
-    public class BasePhidgetEvent: MonoBehaviour
+    public abstract class BasePhidgetEvent: MonoBehaviour
     {
         public BasePhidgetData basePhidgetData;
+    }
+
+    public abstract class InputPhidgetEvent : BasePhidgetEvent
+    {
+        private bool initialise;
+
+        private void OnEnable()
+        {
+            initialise = PhidgetControllerEvents.AddListener != null;
+            AddListener();
+        }
+
+        private void Start()
+        {
+            if (initialise)
+                return;
+            AddListener();
+        }
+
+        private void OnDisable()
+        {
+            RemoveListener();
+        }
+
+        protected abstract void AddListener();
+        protected abstract void RemoveListener();
+
+        protected void ListenerToAdd(Action<object> onStateChange)
+        {
+            PhidgetControllerEvents.AddListener?.Invoke(onStateChange, basePhidgetData.port, basePhidgetData.hubSerialNumber);
+        }
+
+        protected void ListenerToRemove(Action<object> onStateChange)
+        {
+            PhidgetControllerEvents.RemoveListener?.Invoke(onStateChange, basePhidgetData.port, basePhidgetData.hubSerialNumber);
+        }
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Phidgets
 {
-    [RequireComponent(typeof(PhidgetController))]
+    [RequireComponent(typeof(PhidgetHubController))]
     public class PhidgetControllerEvents: MonoBehaviour
     {
-        private PhidgetController phidgetController;
+        private PhidgetHubController phidgetHubController;
         
         //Needed for exception case if the phidget aren't initialised before an attempt at adding an event
         private bool initialised;
@@ -19,23 +19,23 @@ namespace Phidgets
         
         private void OnEnable()
         {
-            PhidgetController.OnHubInitialised += InitialiseEvents;
-            ActivatePhidget += phidgetController.TriggerPhidget;
+            PhidgetHubController.OnHubInitialised += InitialiseEvents;
+            ActivatePhidget += phidgetHubController.TriggerPhidget;
             AddListener += AddEventListener;
             RemoveListener += RemoveEventListener;
         }
 
         private void OnDisable()
         {
-            PhidgetController.OnHubInitialised -= InitialiseEvents;
-            ActivatePhidget -= phidgetController.TriggerPhidget;
+            PhidgetHubController.OnHubInitialised -= InitialiseEvents;
+            ActivatePhidget -= phidgetHubController.TriggerPhidget;
             AddListener -= AddEventListener;
             RemoveListener -= RemoveEventListener;
         }
         
         private void Awake()
         {
-            phidgetController = GetComponent<PhidgetController>();
+            phidgetHubController = GetComponent<PhidgetHubController>();
             
         }
 
@@ -70,14 +70,14 @@ namespace Phidgets
 
         private void AddPhidgetEvent(Action<object> onPhidgetEvent, int port = -1, int serialNumber = -1)
         {
-            var phidget = phidgetController.FindBasePhidget(port, serialNumber);
+            var phidget = phidgetHubController.FindBasePhidget(port, serialNumber);
             if (phidget != null) 
                 phidget.onStateChange += (o) => onPhidgetEvent?.Invoke(o);
         }
         
         private void RemoveEventListener(Action<object> onPhidgetEvent, int port = -1, int serialNumber = -1)
         {
-            var phidget = phidgetController.FindBasePhidget(port, serialNumber);
+            var phidget = phidgetHubController.FindBasePhidget(port, serialNumber);
             if (phidget == null)
                 return;
 

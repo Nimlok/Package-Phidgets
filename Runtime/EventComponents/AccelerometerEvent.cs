@@ -4,18 +4,18 @@ using UnityEngine.Events;
 
 namespace Phidgets.Events
 {
-    public class AccelerometerEvent : BasePhidgetEvent
+    public class AccelerometerEvent : InputPhidgetEvent
     {
         [SerializeField] private UnityEvent<Vector3> OnAccelerometerChange;
 
-        private void OnEnable()
+        protected override void AddListener()
         {
-            PhidgetControllerEvents.AddListener?.Invoke((soundLevel) => OnAccelerometerChange?.Invoke((Vector3)soundLevel), basePhidgetData.port, basePhidgetData.hubSerialNumber);
+            ListenerToAdd(o => OnAccelerometerChange?.Invoke((Vector3)o));
         }
 
-        private void OnDisable()
+        protected override void RemoveListener()
         {
-            PhidgetControllerEvents.RemoveListener?.Invoke((soundLevel) => OnAccelerometerChange?.Invoke((Vector3)soundLevel), basePhidgetData.port, basePhidgetData.hubSerialNumber);
+            ListenerToRemove(o => OnAccelerometerChange?.Invoke((Vector3)o));
         }
     }
 }

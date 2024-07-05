@@ -3,18 +3,18 @@ using UnityEngine.Events;
 
 namespace Phidgets.EventComponents
 {
-    public class DigitalInputEvent : BasePhidgetEvent
+    public class DigitalInputEvent : InputPhidgetEvent
     {
         [SerializeField] private UnityEvent<bool> onDigitalStateChange;
         
-        private void OnEnable()
+        protected override void AddListener()
         {
-            PhidgetControllerEvents.AddListener?.Invoke(o => onDigitalStateChange?.Invoke((bool)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
+            ListenerToAdd(o => onDigitalStateChange?.Invoke((bool)o));
         }
 
-        private void OnDisable()
+        protected override void RemoveListener()
         {
-           PhidgetControllerEvents.RemoveListener?.Invoke(o => onDigitalStateChange?.Invoke((bool)o), basePhidgetData.port, basePhidgetData.GetSerialNumber()); 
+           ListenerToRemove(o => onDigitalStateChange?.Invoke((bool)o));
         }
     }
 }

@@ -8,8 +8,7 @@ using Sirenix.OdinInspector;
 
 namespace Phidgets
 {
-    //TODO: Rename to phidgetHubController??
-    public class PhidgetController : MonoBehaviour
+    public class PhidgetHubController : MonoBehaviour
     {
         private List<Hub> hubs = new List<Hub>();
         

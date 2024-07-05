@@ -156,6 +156,7 @@ namespace Phidgets
                 
                 if (phidget.port == port)
                 {
+                    Debug.Log($"phidget Found: {phidget.port}");
                     return phidget;
                 }
             }
