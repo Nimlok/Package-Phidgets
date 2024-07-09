@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4651147439633130935}
   - component: {fileID: 5027535893963880159}
   m_Layer: 0
-  m_Name: PhidgetController
+  m_Name: PhidgetHubManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

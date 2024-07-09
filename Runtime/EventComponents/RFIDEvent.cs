@@ -17,8 +17,8 @@ namespace Phidgets.Runtime.EventComponents
         
         private void OnEnable()
         {
-            initialise = IndividualPhidgetController.AddListener != null;
-            IndividualPhidgetController.AddListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFID, SerialID == 0 ? -1: SerialID);
+            initialise = IndividualPhidgetManager.AddListener != null;
+            IndividualPhidgetManager.AddListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFID, SerialID == 0 ? -1: SerialID);
         }
 
         private void Start()
@@ -26,12 +26,12 @@ namespace Phidgets.Runtime.EventComponents
             if (initialise)
                 return;
             
-            IndividualPhidgetController.AddListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFID, SerialID == 0 ? -1: SerialID);
+            IndividualPhidgetManager.AddListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFID, SerialID == 0 ? -1: SerialID);
         }
 
         private void OnDisable()
         {
-            IndividualPhidgetController.RemoveListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFID,SerialID == 0 ? -1: SerialID);
+            IndividualPhidgetManager.RemoveListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFID,SerialID == 0 ? -1: SerialID);
         }
     }
 }

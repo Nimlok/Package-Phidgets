@@ -11,7 +11,7 @@ namespace Phidgets
         public KeyCode KeyCode;
     }
     
-    public class PhidgetKeyInputTester: MonoBehaviour
+    public class PhidgetInputTestManager: MonoBehaviour
     {
         [SerializeField] private PhidgetKeyData[] phidgetKeyDatas;
         
@@ -21,7 +21,7 @@ namespace Phidgets
             {
                 if (Input.GetKeyDown(phidgetKeyData.KeyCode))
                 {
-                    PhidgetControllerEvents.ActivatePhidget?.Invoke(null, phidgetKeyData.BasePhidgetData.port, phidgetKeyData.BasePhidgetData.GetSerialNumber());
+                    HubEventsManager.ActivatePhidget?.Invoke(null, phidgetKeyData.BasePhidgetData.port, phidgetKeyData.BasePhidgetData.GetSerialNumber());
                 }
             }
         }

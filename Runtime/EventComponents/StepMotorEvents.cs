@@ -9,12 +9,12 @@ namespace Phidgets.Events
 
         public void SetMotorPosition(float targetPosition)
         {
-            PhidgetControllerEvents.ActivatePhidget?.Invoke(targetPosition, basePhidgetData.port, basePhidgetData.GetSerialNumber());
+            HubEventsManager.ActivatePhidget?.Invoke(targetPosition, basePhidgetData.port, basePhidgetData.GetSerialNumber());
         }
         
         public void SetMotorPosition()
         {
-            PhidgetControllerEvents.ActivatePhidget?.Invoke(target, basePhidgetData.port, basePhidgetData.GetSerialNumber());
+            HubEventsManager.ActivatePhidget?.Invoke(target, basePhidgetData.port, basePhidgetData.GetSerialNumber());
         }
     }
 }

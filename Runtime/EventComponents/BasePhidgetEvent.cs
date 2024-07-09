@@ -43,7 +43,7 @@ namespace Phidgets.EventComponents
 
         private void OnEnable()
         {
-            initialise = PhidgetControllerEvents.AddListener != null;
+            initialise = HubEventsManager.AddListener != null;
             AddListener();
         }
 
@@ -64,12 +64,12 @@ namespace Phidgets.EventComponents
 
         protected void ListenerToAdd(Action<object> onStateChange)
         {
-            PhidgetControllerEvents.AddListener?.Invoke(onStateChange, basePhidgetData.port, basePhidgetData.hubSerialNumber);
+            HubEventsManager.AddListener?.Invoke(onStateChange, basePhidgetData.port, basePhidgetData.hubSerialNumber);
         }
 
         protected void ListenerToRemove(Action<object> onStateChange)
         {
-            PhidgetControllerEvents.RemoveListener?.Invoke(onStateChange, basePhidgetData.port, basePhidgetData.hubSerialNumber);
+            HubEventsManager.RemoveListener?.Invoke(onStateChange, basePhidgetData.port, basePhidgetData.hubSerialNumber);
         }
     }
 }

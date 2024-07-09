@@ -14,7 +14,7 @@ namespace Phidgets
         public Action<object> phidgetevent;
     }
     
-    public class IndividualPhidgetController: MonoBehaviour
+    public class IndividualPhidgetManager: MonoBehaviour
     {
         private List<BaseIndividualPhidget> individualPhidgets = new List<BaseIndividualPhidget>();
         
