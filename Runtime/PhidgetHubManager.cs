@@ -13,6 +13,8 @@ namespace Phidgets
         private List<Hub> hubs = new List<Hub>();
         
         public static Action OnHubInitialised;
+
+        public List<Hub> GetHubs => hubs;
         
         #region EDITOR
 
@@ -21,6 +23,7 @@ namespace Phidgets
         {
             var newHub = new GameObject();
             var hub = newHub.AddComponent<Hub>();
+            hub.AssignPorts();
             hub.name = $"Hub: {serialNumber}";
             hub.serialNumber = serialNumber;
             newHub.transform.SetParent(transform);
@@ -133,11 +136,14 @@ namespace Phidgets
 
                 var phidgetHub = phidgetHubs.Find(x => x.DeviceSerialNumber == hub.serialNumber);
                 if (phidgetHub == null)
+                {
+                    unassignedHubs.Remove(hub);
                     continue;
+                }
                 
                 hub.Initialise(phidgetHub);
-                unassignedHubs.Remove(hub);
                 phidgetHubs.Remove(phidgetHub);
+                unassignedHubs.Remove(hub);
             }
             
             //Assign unassigned Hubs
@@ -175,7 +181,7 @@ namespace Phidgets
             }
             catch (Exception e)
             {
-                Debug.Log($"Failed to add hub: {e}");
+                Debug.LogWarning($"Failed to add <color=green>Hub:</color>: {e}");
             }
 
             return null;
@@ -194,7 +200,7 @@ namespace Phidgets
             var hub = hubs.Find(x => x.serialNumber == serialNumber);
             if (hub == null)
             {
-                Debug.Log($"Could not find Hub: {serialNumber}");
+                Debug.Log($"Could not find <color=green>Hub:</color>: {serialNumber}");
             }
 
             return hub;

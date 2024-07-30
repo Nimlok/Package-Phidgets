@@ -6,6 +6,8 @@ namespace Phidgets
 {
     public class Accelerometer : BasePhidget
     {
+        public override PhidgetInputType PhidgetInputType => PhidgetInputType.Accelerometer;
+        
         private Phidget22.Accelerometer accelerometer => (Phidget22.Accelerometer)Phidget;
         
         public override void InitialisePhidget()

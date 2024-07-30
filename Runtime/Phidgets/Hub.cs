@@ -17,6 +17,11 @@ namespace Phidgets
         private BasePhidget[] basePhidgets = new BasePhidget[6];
         private BasePhidgetEvent[] phidgetEvents = new BasePhidgetEvent[6];
         private Phidget22.Hub hub;
+        private bool initialised;
+
+        public bool Initialised => initialised;
+
+        public BasePhidget[] GetPorts => basePhidgets;
         
         #region  EDITOR
         private bool eventsAdded;
@@ -92,9 +97,18 @@ namespace Phidgets
         }
 
         #endregion
+
+        public void AssignPorts()
+        {
+            for (int i = 0; i < phidgets.Length; i++)
+            {
+                phidgets[i].port = i;
+            }
+        }
         
         public void Initialise(Phidget22.Hub hub)
         {
+            initialised = true;
             serialNumber = hub.DeviceSerialNumber;
             RenameHub();
             this.hub = hub;

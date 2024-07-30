@@ -12,12 +12,15 @@ namespace Phidgets
         
         private int serialID;
         [ReadOnly]public int port;
-
+        private bool initialised;
+        
         protected Phidget22.Phidget Phidget;
         
         public virtual PhidgetInputType PhidgetInputType => PhidgetInputType.None;
 
         public Action<object> onStateChange;
+
+        public bool GetInitialised => initialised;
         
         public int SetSerial
         {
@@ -34,9 +37,11 @@ namespace Phidgets
                 Phidget.HubPort = port;
                 Phidget.Attach += OnAttachHandler;
                 Phidget.Open(500);
+                initialised = true;
             }
             catch (Exception e)
             {
+                initialised = false;
                 Debug.LogWarning($"<color=lightblue>Phidget: {serialID}: {port}</color>: {e}");
             }
         }

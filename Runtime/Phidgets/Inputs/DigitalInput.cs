@@ -5,8 +5,6 @@ namespace Phidgets
 {
     public class DigitalInput: BasePhidget
     {
-        public Action<bool> OnStateChange;
-        
         private Phidget22.DigitalInput PhidgetDigitalInput => (Phidget22.DigitalInput)Phidget;
 
         public override PhidgetInputType PhidgetInputType => PhidgetInputType.DigitalInput;
@@ -31,13 +29,13 @@ namespace Phidgets
         public override void TriggerPhidget(object value = null)
         {
             base.TriggerPhidget(value);
-            OnStateChange?.Invoke(true);
+            onStateChange?.Invoke(value);
         }
         
         private void StateChange(object o, DigitalInputStateChangeEventArgs e)
         {
             LogState(e.State.ToString());
-            ThreadManager.instance.AddToMainThread(() => OnStateChange?.Invoke(e.State));
+            ThreadManager.instance.AddToMainThread(() => onStateChange?.Invoke(e.State));
         }
     }
 }

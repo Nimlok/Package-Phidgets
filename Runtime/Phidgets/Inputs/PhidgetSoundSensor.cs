@@ -5,6 +5,8 @@ namespace Phidgets
 {
     public class BaseSoundSensor : BasePhidget
     {
+        public override PhidgetInputType PhidgetInputType => PhidgetInputType.Sound;
+        
         private SoundSensor soundSensor => (SoundSensor)Phidget;
         
         public override void InitialisePhidget()

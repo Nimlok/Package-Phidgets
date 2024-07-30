@@ -5,6 +5,8 @@ namespace Phidgets
 {
     public class BaseVoltageSensor: BasePhidget
     {
+        public override PhidgetInputType PhidgetInputType => PhidgetInputType.VoltageRatio;
+        
         protected VoltageRatioInput GetVoltageRatioInput => (VoltageRatioInput)Phidget;
         
         public override void InitialisePhidget()

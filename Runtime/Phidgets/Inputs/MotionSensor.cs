@@ -7,6 +7,8 @@ namespace Phidgets.Voltage
     {
         private VoltageInput motionSensor => (VoltageInput)Phidget;
         
+        public override PhidgetInputType PhidgetInputType => PhidgetInputType.Motion;
+        
         public override void InitialisePhidget()
         {
             Phidget = new VoltageInput();

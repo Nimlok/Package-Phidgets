@@ -6,6 +6,8 @@ namespace Phidgets
     {
         private Phidget22.DistanceSensor sonarSensor => (Phidget22.DistanceSensor)Phidget;
         
+        public override PhidgetInputType PhidgetInputType => PhidgetInputType.Sonar;
+        
         public override void InitialisePhidget()
         {
             Phidget = new Phidget22.DistanceSensor();

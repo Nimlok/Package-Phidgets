@@ -12,6 +12,8 @@ namespace Phidgets
 
         public double GetPosition => GetStepper.Position;
         
+        public override PhidgetInputType PhidgetInputType => PhidgetInputType.MotorStepper2A;
+        
         public override void InitialisePhidget()
         {
             Phidget = new Stepper();

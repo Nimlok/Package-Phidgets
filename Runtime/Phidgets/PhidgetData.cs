@@ -12,7 +12,7 @@ namespace Phidgets
         [FormerlySerializedAs("type")] public PhidgetInputType inputType;
         public bool debug;
         [HideInInspector] public int serial;
-
+        
        public BasePhidget GetPhidget()
        {
            var newPhidget = GetPhidgetType.GetType(inputType);    

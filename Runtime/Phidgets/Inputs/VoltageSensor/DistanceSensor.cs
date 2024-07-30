@@ -4,6 +4,7 @@ namespace Phidgets
 {
     public class DistanceSensor: BasePhidget
     {
+        
         private Phidget22.DistanceSensor PhidgetDigitalInput => (Phidget22.DistanceSensor)Phidget;
 
         public override PhidgetInputType PhidgetInputType => PhidgetInputType.Distance;
