@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace Phidgets
 {
-    [RequireComponent(typeof(CanvasGroup))]
     public class PortDisplay: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI inputTypeText;
@@ -13,6 +12,7 @@ namespace Phidgets
         [SerializeField] private Image indicatorImage;
         [SerializeField] private GameObject inputValueGroup;
         [SerializeField] private TextMeshProUGUI inputValueText;
+        [SerializeField] private CanvasGroup canvasGroup;
         
         
         [SerializeField] private Color initialisedColor;
@@ -20,12 +20,11 @@ namespace Phidgets
         [SerializeField] private Color activeColor;
         
         private object currentState;
-        private CanvasGroup canvasGroup;
+  
 
         private void Awake()
         {
             inputValueGroup.SetActive(false);
-            canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.enabled = false;
         }
 

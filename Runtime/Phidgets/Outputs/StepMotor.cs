@@ -36,7 +36,6 @@ namespace Phidgets
                 Debug.Log($"Target Missing");
                 return;
             }
-                
             
             MoveToTarget((float)target);
             base.TriggerPhidget(target);

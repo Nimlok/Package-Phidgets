@@ -149,7 +149,7 @@ namespace Phidgets
             //Assign unassigned Hubs
             for (int i = 0; i < unassignedHubs.Count; i++)
             {
-                if (phidgetHubs.Count <= 0)
+                if (phidgetHubs.Count <= 0 || i >= phidgetHubs.Count)
                     return;
                 
                 unassignedHubs[i].Initialise(phidgetHubs[i]);

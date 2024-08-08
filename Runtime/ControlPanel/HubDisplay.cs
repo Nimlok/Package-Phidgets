@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace Phidgets
 {
-    [RequireComponent(typeof(CanvasGroup))]
     public class HubDisplay: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI serialTextMesh;
         [SerializeField] private PortDisplay[] ports = new PortDisplay[6];
-
-        private CanvasGroup canvasGroup;
+        [SerializeField] private CanvasGroup canvasGroup;
 
         private void Awake()
         {
