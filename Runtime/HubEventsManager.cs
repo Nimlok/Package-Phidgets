@@ -9,8 +9,6 @@ namespace Phidgets
     {
         private PhidgetHubManager phidgetHubManager;
         
-        //Needed for exception case if the phidget aren't initialised before an attempt at adding an event
-        private bool initialised;
         private readonly List<PhidgetEventsData> eventsToAdd = new List<PhidgetEventsData>();
         
         public static Action<Action<object>, int, int> AddListener;
@@ -54,7 +52,7 @@ namespace Phidgets
         
         private void AddEventListener(Action<object> onPhidgetEvent, int port = -1, int serialNumber = -1)
         {
-            if (!initialised)
+            if (!phidgetHubManager.initialised)
             {
                 eventsToAdd.Add(new PhidgetEventsData()
                 {

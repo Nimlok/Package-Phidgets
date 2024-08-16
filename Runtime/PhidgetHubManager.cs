@@ -13,6 +13,7 @@ namespace Phidgets
         private List<Hub> hubs = new List<Hub>();
         
         public static Action OnHubInitialised;
+        public bool initialised;
 
         public List<Hub> GetHubs => hubs;
         
@@ -112,6 +113,7 @@ namespace Phidgets
         {
             InitialiseHubs();
             InitialisePhidgets();
+            initialised = true;
         }
         
         //TODO: DS 20/06/24 Separate to smaller functions
