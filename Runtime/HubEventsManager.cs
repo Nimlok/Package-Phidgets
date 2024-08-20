@@ -44,7 +44,7 @@ namespace Phidgets
             
             foreach (var phidgetEvent in eventsToAdd)
             {
-                AddPhidgetEvent(phidgetEvent.action, phidgetEvent.port, phidgetEvent.serialNumber);
+                AddPhidgetEvent(phidgetEvent.action, phidgetEvent.port, phidgetEvent.serialNumber == 0? -1: phidgetEvent.serialNumber);
             }
             
             eventsToAdd.Clear();
