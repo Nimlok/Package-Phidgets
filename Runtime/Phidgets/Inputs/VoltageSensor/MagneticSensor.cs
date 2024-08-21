@@ -1,6 +1,6 @@
 using Phidget22;
 
-namespace Phidgets.Voltage
+namespace Nimlok.Phidgets.Voltage
 {
     public class MagneticSensor : BaseVoltageSensor
     {

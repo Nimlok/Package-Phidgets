@@ -1,8 +1,8 @@
 using System;
-using Phidgets.EventComponents;
+using Nimlok.Phidgets.EventComponents;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     [Serializable]
     public struct PhidgetKeyData

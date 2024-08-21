@@ -1,6 +1,6 @@
 using Phidget22;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class IRReflective10cm: BaseVoltageSensor
     {

@@ -1,4 +1,4 @@
-namespace Phidgets.Inputs.VoltageSensor
+namespace Nimlok.Phidgets.Inputs.VoltageSensor
 {
     public class IRDistanceAdapter: BaseVoltageSensor
     {

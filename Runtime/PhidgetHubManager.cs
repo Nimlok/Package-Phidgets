@@ -6,7 +6,7 @@ using Phidget22;
 using Phidget22.Events;
 using Sirenix.OdinInspector;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class PhidgetHubManager : MonoBehaviour
     {

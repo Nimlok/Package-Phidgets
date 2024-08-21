@@ -1,8 +1,8 @@
-using Phidgets.EventComponents;
-using Phidgets.Events;
+using Nimlok.Phidgets.EventComponents;
+using Nimlok.Phidgets.Events;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public static class GetPhidgetEvent 
     {

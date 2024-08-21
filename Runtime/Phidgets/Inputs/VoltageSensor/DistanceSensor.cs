@@ -1,6 +1,6 @@
 using Phidget22.Events;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class DistanceSensor: BasePhidget
     {

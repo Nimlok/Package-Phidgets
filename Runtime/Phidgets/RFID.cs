@@ -1,8 +1,8 @@
 using System;
+using Nimlok.Phidgets.IndividualPhidgets;
 using Phidget22.Events;
-using Phidgets.IndividualPhidgets;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class RFID : BaseIndividualPhidget
     {
@@ -14,14 +14,26 @@ namespace Phidgets
 
         public Action OnTagLost;
 
-        public override void AddListener(Action<object> onStateChanged)
+        public override void AddListener(Action<object> onStateChanged, IndividualPhidgetType type)
         {
-            onTagRead += (s) => onStateChanged?.Invoke(s);
+            if (type == IndividualPhidgetType.RFIDReader || type == IndividualPhidgetType.RFID)
+            {
+                onTagRead += (s) => onStateChanged?.Invoke(s);
+                return;
+            }
+
+            OnTagLost += () => onStateChanged?.Invoke(null);
         }
 
-        public override void RemoveListener(Action<object> onStateChanged)
+        public override void RemoveListener(Action<object> onStateChanged, IndividualPhidgetType type)
         {
-            onTagRead -= (s) => onStateChanged?.Invoke(s);
+            if (type == IndividualPhidgetType.RFIDReader || type == IndividualPhidgetType.RFID)
+            {
+                onTagRead -= (s) => onStateChanged?.Invoke(s);
+                return;
+            }
+
+            OnTagLost -= () => onStateChanged?.Invoke(null);
         }
 
         public override void InitialisePhidget()

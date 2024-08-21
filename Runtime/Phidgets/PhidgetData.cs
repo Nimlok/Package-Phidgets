@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     [Serializable]
     public struct PhidgetData

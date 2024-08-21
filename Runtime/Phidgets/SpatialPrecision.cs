@@ -2,7 +2,7 @@ using System;
 using Phidget22;
 using Phidget22.Events;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class SpatialPrecision: BasePhidget
     {

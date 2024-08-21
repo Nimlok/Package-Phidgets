@@ -1,6 +1,6 @@
-using Phidgets.EventComponents;
+using Nimlok.Phidgets.EventComponents;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class HubData
     {

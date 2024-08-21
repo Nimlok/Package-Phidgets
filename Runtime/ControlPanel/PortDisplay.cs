@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class PortDisplay: MonoBehaviour
     {

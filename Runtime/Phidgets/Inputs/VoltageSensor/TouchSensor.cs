@@ -1,4 +1,4 @@
-namespace Phidgets.Voltage
+namespace Nimlok.Phidgets.Voltage
 {
     public class TouchSensor: BaseVoltageSensor
     {

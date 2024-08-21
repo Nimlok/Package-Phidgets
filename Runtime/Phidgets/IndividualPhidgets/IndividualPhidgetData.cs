@@ -1,7 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 
-namespace Phidgets.IndividualPhidgets
+namespace Nimlok.Phidgets.IndividualPhidgets
 {
     public class IndividualPhidgetData
     {

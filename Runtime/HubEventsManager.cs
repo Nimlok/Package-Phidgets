@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     [RequireComponent(typeof(PhidgetHubManager))]
     public class HubEventsManager: MonoBehaviour

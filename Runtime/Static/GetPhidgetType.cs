@@ -1,8 +1,8 @@
-using Phidgets.Inputs;
-using Phidgets.Inputs.VoltageSensor;
-using Phidgets.Voltage;
+using Nimlok.Phidgets.Inputs;
+using Nimlok.Phidgets.Inputs.VoltageSensor;
+using Nimlok.Phidgets.Voltage;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public static class GetPhidgetType
     {

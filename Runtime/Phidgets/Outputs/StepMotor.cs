@@ -1,7 +1,7 @@
 using Phidget22;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class StepMotor: BasePhidget
     {

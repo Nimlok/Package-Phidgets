@@ -1,9 +1,9 @@
 using System;
-using Phidgets.EventComponents;
+using Nimlok.Phidgets.EventComponents;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     [Serializable]
     public class Hub: MonoBehaviour

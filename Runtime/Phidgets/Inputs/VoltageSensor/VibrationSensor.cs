@@ -1,6 +1,6 @@
 using Phidget22;
 
-namespace Phidgets.Inputs.VoltageSensor
+namespace Nimlok.Phidgets.Inputs.VoltageSensor
 {
     public class VibrationSensor: BaseVoltageSensor
     {

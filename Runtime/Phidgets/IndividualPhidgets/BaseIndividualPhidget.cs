@@ -3,7 +3,7 @@ using System;
 using Phidget22.Events;
 using UnityEngine;
 
-namespace Phidgets.IndividualPhidgets
+namespace Nimlok.Phidgets.IndividualPhidgets
 {
     public class BaseIndividualPhidget: MonoBehaviour
     {
@@ -18,12 +18,12 @@ namespace Phidgets.IndividualPhidgets
         
         public int GetSerial => serialID ;
         
-        public virtual void AddListener(Action<object> onStateChanged)
+        public virtual void AddListener(Action<object> onStateChanged, IndividualPhidgetType type)
         {
            
         }
 
-        public virtual void RemoveListener(Action<object> onStateChanged)
+        public virtual void RemoveListener(Action<object> onStateChanged, IndividualPhidgetType type)
         {
            
         }

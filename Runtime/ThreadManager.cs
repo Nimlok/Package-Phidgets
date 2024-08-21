@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 //TODO: DS 24/05/24 Remove from namespace once decided if in master template
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class ThreadManager : MonoBehaviour
     {

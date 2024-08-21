@@ -1,7 +1,6 @@
-using System;
 using Phidget22.Events;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class DigitalInput: BasePhidget
     {

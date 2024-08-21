@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Phidgets.IndividualPhidgets;
+using Nimlok.Phidgets.IndividualPhidgets;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public struct IndividaulPhidgetEvent
     {
@@ -131,17 +131,25 @@ namespace Phidgets
             if (phidget == null)
                 return;
             
-            phidget.AddListener(onPhidgetEvent);
+            phidget.AddListener(onPhidgetEvent, type);
         }
         
         private void RemoveEventListener(Action<object> onPhidgetEvent, IndividualPhidgetType type, int serialNumber = -1)
         {
-            var phidget = FindPhidget(type, serialNumber);
+            var checktype = CheckRFIDEvent(type);
+            var phidget = FindPhidget(checktype, serialNumber);
 
             if (phidget == null)
                 return;
             
-            phidget.RemoveListener(onPhidgetEvent);
+            phidget.RemoveListener(onPhidgetEvent, type);
+        }
+
+        private IndividualPhidgetType CheckRFIDEvent(IndividualPhidgetType type)
+        {
+            return type == IndividualPhidgetType.RFIDLost || type == IndividualPhidgetType.RFIDReader
+                ? IndividualPhidgetType.RFID
+                : type;
         }
 
         private BaseIndividualPhidget FindPhidget(IndividualPhidgetType phidgetType, int serialNumber)

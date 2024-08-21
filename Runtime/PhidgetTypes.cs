@@ -1,6 +1,6 @@
 using System;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     [Serializable]
     public enum PhidgetInputType

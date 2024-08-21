@@ -1,7 +1,7 @@
 using Phidget22;
 using Phidget22.Events;
 
-namespace Phidgets.Voltage
+namespace Nimlok.Phidgets.Voltage
 {
     public class MotionSensor: BasePhidget
     {

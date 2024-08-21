@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Phidgets.EventComponents
+namespace Nimlok.Phidgets.EventComponents
 {
     [Serializable]
     public struct BasePhidgetData

@@ -1,4 +1,4 @@
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class Joystick: BaseVoltageSensor
     {

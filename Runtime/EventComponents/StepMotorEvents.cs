@@ -1,7 +1,7 @@
-using Phidgets.EventComponents;
+using Nimlok.Phidgets.EventComponents;
 using UnityEngine;
 
-namespace Phidgets.Events
+namespace Nimlok.Phidgets.Events
 {
     public class StepMotorEvents: BasePhidgetEvent
     {

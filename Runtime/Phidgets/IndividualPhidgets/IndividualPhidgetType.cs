@@ -1,11 +1,13 @@
 using System;
 
-namespace Phidgets.IndividualPhidgets
+namespace Nimlok.Phidgets.IndividualPhidgets
 {
     [Serializable]
     public enum IndividualPhidgetType
     {
         None,
-        RFID
+        RFID,
+        RFIDReader,
+        RFIDLost
     }
 }

@@ -2,7 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class HubDisplay: MonoBehaviour
     {

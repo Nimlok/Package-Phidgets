@@ -2,7 +2,7 @@ using System;
 using Phidget22.Events;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     public class Accelerometer : BasePhidget
     {

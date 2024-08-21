@@ -3,7 +3,7 @@ using Phidget22.Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Phidgets
+namespace Nimlok.Phidgets
 {
     [Serializable]
     public abstract class BasePhidget

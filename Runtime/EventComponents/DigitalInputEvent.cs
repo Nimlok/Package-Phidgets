@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Phidgets.EventComponents
+namespace Nimlok.Phidgets.EventComponents
 {
     public class DigitalInputEvent : InputPhidgetEvent
     {

@@ -1,4 +1,4 @@
-namespace Phidgets.Inputs
+namespace Nimlok.Phidgets.Inputs
 {
     public class VoltageTemperatureSensor: BaseVoltageSensor
     {
