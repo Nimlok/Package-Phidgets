@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Nimlok.Phidgets.IndividualPhidgets;
+using Nimlok.Phidgets.Runtime.EventComponents;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ namespace Nimlok.Phidgets
         
         #region EDITOR
         [Button(ButtonSizes.Medium, ButtonStyle.Box, Expanded = true)]
-        private void AddPhidget(IndividualPhidgetType type)
+        private void AddPhidget(IndividualPhidgetType type, int SerialNumber)
         {
             if (type == IndividualPhidgetType.None)
                 return;
@@ -36,9 +37,20 @@ namespace Nimlok.Phidgets
             switch (type)
             {
                 case IndividualPhidgetType.RFID:
+                case IndividualPhidgetType.RFIDLost:
+                case IndividualPhidgetType.RFIDReader:
                     phidget = phidgetGameObject.AddComponent<RFID>();
-                    break;
-                default:
+                    phidget.name = "RFID";
+                    var rfidEvent = phidgetGameObject.AddComponent<RFIDEvent>();
+                    rfidEvent.rfid = phidget.GetComponent<RFID>();
+                        
+                    if (SerialNumber != 0)
+                    {
+                        phidget.name += $"{SerialNumber}";
+                        phidget.serialID = SerialNumber;
+                        rfidEvent.SerialID = SerialNumber;
+                    }
+                    
                     break;
             }
 

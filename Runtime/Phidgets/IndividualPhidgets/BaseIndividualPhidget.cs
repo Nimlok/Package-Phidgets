@@ -1,5 +1,4 @@
 using System;
-
 using Phidget22.Events;
 using UnityEngine;
 
@@ -42,6 +41,11 @@ namespace Nimlok.Phidgets.IndividualPhidgets
                 
                 Phidget.Attach += OnAttachHandler;
                 Phidget.Open(500);
+
+                if (serialID <= 0)
+                {
+                    serialID = Phidget.DeviceSerialNumber;
+                }
             }
             catch (Exception e)
             {
