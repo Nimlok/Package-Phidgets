@@ -12,17 +12,27 @@ namespace Nimlok.Phidgets
         private Action<double[]> onAccelerometer;
 
         private Action<double[]> onRotation;
-
-        public void AddListener(Action<object> onStateChanged)
+        
+        public override void AddListener(Action<object> onStateChanged, IndividualPhidgetType type)
         {
-            onAccelerometer += (d) => onStateChanged?.Invoke(d);
-            onRotation += (r) => onStateChanged?.Invoke(r);
+            if (type == IndividualPhidgetType.SpatialAccelormeter)
+            {
+                onAccelerometer += (d) => onStateChanged?.Invoke(d);
+            } else if (type == IndividualPhidgetType.SpatialRotation)
+            {
+                onRotation += (r) => onStateChanged?.Invoke(r);
+            }
         }
 
-        public void RemoveListener(Action<object> onStateChanged)
+        public override void RemoveListener(Action<object> onStateChanged, IndividualPhidgetType type)
         {
-            onAccelerometer -= (d) => onStateChanged?.Invoke(d);
-            onRotation -= (r) => onStateChanged?.Invoke(r);
+            if (type == IndividualPhidgetType.SpatialAccelormeter)
+            {
+                onAccelerometer -= (d) => onStateChanged?.Invoke(d);
+            } else if (type == IndividualPhidgetType.SpatialRotation)
+            {
+                onRotation -= (r) => onStateChanged?.Invoke(r);
+            }
         }
 
         public override void InitialisePhidget()
