@@ -8,6 +8,8 @@ namespace Nimlok.Phidgets.IndividualPhidgets
         None,
         RFID,
         RFIDReader,
-        RFIDLost
+        RFIDLost,
+        SpatialAccelormeter,
+        SpatialRotation
     }
 }

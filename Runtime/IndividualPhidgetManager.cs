@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EventComponents;
 using Nimlok.Phidgets.IndividualPhidgets;
 using Nimlok.Phidgets.Runtime.EventComponents;
 using Sirenix.OdinInspector;
@@ -52,6 +53,21 @@ namespace Nimlok.Phidgets
                     }
                     
                     break;
+                case IndividualPhidgetType.SpatialAccelormeter:
+                    case IndividualPhidgetType.SpatialRotation:
+                        phidget = phidgetGameObject.AddComponent<SpatialPrecision>();
+                        phidget.name = "RFID";
+                        var spatialEvent = phidgetGameObject.AddComponent<SpatialEvent>();
+                        spatialEvent.spatialPrecision = phidget.GetComponent<SpatialPrecision>();
+                        
+                        if (SerialNumber != 0)
+                        {
+                            phidget.name += $"{SerialNumber}";
+                            phidget.serialID = SerialNumber;
+                            spatialEvent.SerialID = SerialNumber;
+                        }
+
+                        break;
             }
 
             if (phidget == null)

@@ -1,10 +1,11 @@
 using System;
+using Nimlok.Phidgets.IndividualPhidgets;
 using Phidget22;
 using Phidget22.Events;
 
 namespace Nimlok.Phidgets
 {
-    public class SpatialPrecision: BasePhidget
+    public class SpatialPrecision: BaseIndividualPhidget
     {
         private Spatial spatialPrecision => (Spatial)Phidget;
 
