@@ -1,4 +1,5 @@
 using Nimlok.Phidgets;
+using Phidget22;
 using Phidget22.Events;
 
 public class RFIDData
@@ -18,7 +19,9 @@ public class RFIDVint : BasePhidget
     private Phidget22.RFID PhidgetRFIDVint => (Phidget22.RFID)Phidget;
 
     public override PhidgetInputType PhidgetInputType => PhidgetInputType.RFIDVint;
-
+    
+    public Phidget22.RFID GetBasePhidget => (Phidget22.RFID)Phidget;
+    
     public override void InitialisePhidget()
     {
         Phidget = new Phidget22.RFID();
