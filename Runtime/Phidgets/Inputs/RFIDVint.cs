@@ -29,8 +29,8 @@ public class RFIDVint : BasePhidget
         Phidget = new Phidget22.RFID();
         PhidgetRFIDVint.Tag += StateChange;
         PhidgetRFIDVint.TagLost += StateChange;
-        PhidgetRFIDVint.AntennaEnabled = false;
         base.InitialisePhidget();
+        PhidgetRFIDVint.AntennaEnabled = false;
     }
 
     private void StateChange(object sender, RFIDTagLostEventArgs e)
