@@ -36,5 +36,18 @@ namespace EventComponents
             var rfidvInt = (RFIDVint)phidget;
             return rfidvInt.GetBasePhidget.TagPresent ? rfidvInt.GetBasePhidget.GetLastTag().TagString : string.Empty;
         }
+
+        public Phidget22.RFID GetRFIDPhidget()
+        {
+            var phidget = basePhidgetData.hub.FindPhidget(basePhidgetData.port);
+            if (phidget == null)
+            {
+                Debug.LogError($"Failed to get phidget for tag: {basePhidgetData.port}");
+                return null;
+            }
+            
+            var rfidvInt = (RFIDVint)phidget;
+            return rfidvInt.GetBasePhidget;
+        }
     }
 }
