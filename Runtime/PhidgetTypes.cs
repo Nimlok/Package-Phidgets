@@ -22,6 +22,7 @@ namespace Nimlok.Phidgets
         Sound,
         Sonar,
         MotorStepper2A,
-        MotorStepper4A
+        MotorStepper4A,
+        RFIDVint
     }
 }

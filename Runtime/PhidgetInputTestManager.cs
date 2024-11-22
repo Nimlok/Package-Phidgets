@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Nimlok.Phidgets
 {
     [Serializable]
-    public struct PhidgetKeyData
+    public class PhidgetKeyData
     {
         public BasePhidgetData BasePhidgetData;
         public KeyCode KeyCode;
