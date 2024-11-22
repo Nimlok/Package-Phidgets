@@ -10,7 +10,7 @@ namespace Nimlok.Phidgets
     {
         public bool debug;
         
-        private int serialID;
+        protected int serialID;
         [ReadOnly]public int port;
         private bool initialised;
         

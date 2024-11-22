@@ -6,8 +6,10 @@ public class RFIDData
 {
     public string tag;
     public bool lost;
+    public int hub;
+    public int port;
 
-    public RFIDData(string tag, bool lost)
+    public RFIDData(string tag, bool lost, int hub, int port)
     {
         this.tag = tag;
         this.lost = lost;
@@ -33,14 +35,14 @@ public class RFIDVint : BasePhidget
     private void StateChange(object sender, RFIDTagLostEventArgs e)
     {
         LogState(e.Tag);
-        var data = new RFIDData(e.Tag, true);
+        var data = new RFIDData(e.Tag, true, serialID, port);
         ThreadManager.instance.AddToMainThread(() => onStateChange?.Invoke(data));
     }
 
     private void StateChange(object sender, RFIDTagEventArgs e)
     {
         LogState(e.Tag);
-        var data = new RFIDData(e.Tag, false);
+        var data = new RFIDData(e.Tag, false, serialID, port);
         ThreadManager.instance.AddToMainThread(() => onStateChange?.Invoke(data));
     }
 
