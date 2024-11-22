@@ -24,7 +24,6 @@ public class RFIDVint : BasePhidget
         Phidget = new Phidget22.RFID();
         PhidgetRFIDVint.Tag += StateChange;
         PhidgetRFIDVint.TagLost += StateChange;
-        PhidgetRFIDVint.IsHubPortDevice = true;
         base.InitialisePhidget();
     }
 
