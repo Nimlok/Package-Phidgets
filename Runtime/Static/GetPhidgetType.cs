@@ -46,6 +46,8 @@ namespace Nimlok.Phidgets
                     return new StepMotor();
                 case PhidgetInputType.MotorStepper2A:
                     return new StepMotor();
+                 case PhidgetInputType.RFIDVint:
+                     return new RFIDVint();
             }
 
             return null;

@@ -1,3 +1,4 @@
+using EventComponents;
 using Nimlok.Phidgets.EventComponents;
 using Nimlok.Phidgets.Events;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace Nimlok.Phidgets
                     return gameObject.AddComponent<StepMotorEvents>();
                 case PhidgetInputType.Joystick:
                     break;
+                case PhidgetInputType.RFIDVint:
+                    return gameObject.AddComponent<RFIDVintEvent>();
                 default:
                     return null;
             }
