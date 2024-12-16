@@ -49,7 +49,7 @@ namespace Nimlok.Phidgets
                     {
                         phidget.name += $"{SerialNumber}";
                         phidget.serialID = SerialNumber;
-                        rfidEvent.SerialID = SerialNumber;
+                        rfidEvent.serialID = SerialNumber;
                     }
                     
                     break;
@@ -87,15 +87,11 @@ namespace Nimlok.Phidgets
             AddListener -= AddEventListener;
             RemoveListener -= RemoveEventListener;
         }
-
-        private void Awake()
+        
+        private void Start()
         {
             AddListener += AddEventListener;
             RemoveListener += RemoveEventListener;
-        }
-
-        private void Start()
-        {
             InitialiseIndividualPhidgets();
             initialised = true;
             InitialiseEvents();

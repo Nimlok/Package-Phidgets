@@ -1,6 +1,6 @@
 {
   "name": "com.nimlok.phidgets",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "displayName": "Phidgets",
   "description": "Access all phidgets and hubs",
   "unity": "2029.1",

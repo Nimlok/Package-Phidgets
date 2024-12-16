@@ -1,5 +1,3 @@
-using System;
-using Nimlok.Phidgets.EventComponents;
 using Nimlok.Phidgets.IndividualPhidgets;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -12,7 +10,7 @@ namespace Nimlok.Phidgets.Runtime.EventComponents
         [OnValueChanged("UpdateSerialNumber")]
         public RFID rfid;
         
-        public int SerialID;
+        public int serialID;
         
         [Space]
         [SerializeField] private UnityEvent<string> onTagRead;
@@ -25,7 +23,12 @@ namespace Nimlok.Phidgets.Runtime.EventComponents
             if (rfid == null)
                 return;
 
-            SerialID = rfid.serialID;
+            serialID = rfid.serialID;
+            
+            if (initialised && Application.isPlaying)
+                return;
+            
+            AddListener();
         }
 
         private void OnGUI()
@@ -35,40 +38,45 @@ namespace Nimlok.Phidgets.Runtime.EventComponents
 
         private void OnEnable()
         {
-            initialised = IndividualPhidgetManager.AddListener != null;
-            
-            if(initialised)
-                AddListener();
-        }
-
-        private void Start()
-        {
-            if (initialised)
+            if (IndividualPhidgetManager.AddListener == null || initialised || serialID == 0)
                 return;
-            
             
             AddListener();
         }
 
         private void OnDisable()
         {
-           RemoveListeners();
+            RemoveListeners();
         }
-
+        
+        private void Start()
+        {
+            if (IndividualPhidgetManager.AddListener == null || initialised || serialID == 0)
+                return;
+            
+            AddListener();
+        }
+        
         private void AddListener()
         {
+            initialised = true;
+            
             if(onTagRead != null)
-                IndividualPhidgetManager.AddListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFIDReader, SerialID == 0 ? -1: SerialID);
+                IndividualPhidgetManager.AddListener?.Invoke( 
+                    tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFIDReader, serialID == 0 ? -1: serialID
+                    );
             if(onTagLost != null)
-                IndividualPhidgetManager.AddListener?.Invoke( (o) => onTagLost?.Invoke(), IndividualPhidgetType.RFIDLost, SerialID == 0 ? -1: SerialID);
+                IndividualPhidgetManager.AddListener?.Invoke( (o) => onTagLost?.Invoke(), IndividualPhidgetType.RFIDLost, serialID == 0 ? -1: serialID);
         }
 
         private void RemoveListeners()
         {
+            initialised = false;
+            
             if(onTagRead != null)
-                IndividualPhidgetManager.RemoveListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFIDReader, SerialID == 0 ? -1: SerialID);
+                IndividualPhidgetManager.RemoveListener?.Invoke( tag => onTagRead?.Invoke((string)tag), IndividualPhidgetType.RFIDReader, serialID == 0 ? -1: serialID);
             if(onTagLost != null)
-                IndividualPhidgetManager.RemoveListener?.Invoke((o) => onTagLost?.Invoke(), IndividualPhidgetType.RFIDLost, SerialID == 0 ? -1: SerialID);
+                IndividualPhidgetManager.RemoveListener?.Invoke((o) => onTagLost?.Invoke(), IndividualPhidgetType.RFIDLost, serialID == 0 ? -1: serialID);
         }
     }
 }
