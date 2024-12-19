@@ -18,7 +18,7 @@ public class RFIDData
 
 public class RFIDVint : BasePhidget
 {
-    private Phidget22.RFID PhidgetRFIDVint => (Phidget22.RFID)Phidget;
+    private Phidget22.RFID PhidgetRfidVint => (Phidget22.RFID)Phidget;
 
     public override PhidgetInputType PhidgetInputType => PhidgetInputType.RFIDVint;
     
@@ -27,10 +27,9 @@ public class RFIDVint : BasePhidget
     public override void InitialisePhidget()
     {
         Phidget = new Phidget22.RFID();
-        PhidgetRFIDVint.Tag += StateChange;
-        PhidgetRFIDVint.TagLost += StateChange;
+        PhidgetRfidVint.Tag += StateChange;
+        PhidgetRfidVint.TagLost += StateChange;
         base.InitialisePhidget();
-        PhidgetRFIDVint.AntennaEnabled = false;
     }
 
     private void StateChange(object sender, RFIDTagLostEventArgs e)
@@ -49,16 +48,16 @@ public class RFIDVint : BasePhidget
 
     public override void ClosePhidget()
     {
-        if (PhidgetRFIDVint == null)
+        if (PhidgetRfidVint == null)
             return;
             
-        PhidgetRFIDVint.Tag -= StateChange;
+        PhidgetRfidVint.Tag -= StateChange;
         base.ClosePhidget();
     }
         
     public override void TriggerPhidget(object value = null)
     {
         base.TriggerPhidget(value);
-        if (value != null) PhidgetRFIDVint.AntennaEnabled = (bool)value;
+        if (value != null) PhidgetRfidVint.AntennaEnabled = (bool)value;
     }
 }

@@ -18,8 +18,6 @@ namespace Nimlok.Phidgets
         
         public virtual PhidgetInputType PhidgetInputType => PhidgetInputType.None;
 
-        public virtual Phidget22.Phidget GetBasePhidget => Phidget;
-
         public Action<object> onStateChange;
 
         public bool GetInitialised => initialised;

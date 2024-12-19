@@ -39,6 +39,8 @@ namespace Nimlok.Phidgets
                     break;
                 case PhidgetInputType.RFIDVint:
                     return gameObject.AddComponent<RFIDVintEvent>();
+                case PhidgetInputType.Relay:
+                    return gameObject.AddComponent<RelayEvent>();
                 default:
                     return null;
             }
