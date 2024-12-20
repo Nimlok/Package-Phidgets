@@ -42,7 +42,7 @@ namespace Nimlok.Phidgets
         private void FindHub()
         {
             if (phidgetHubManager != null) return;
-            phidgetHubManager = FindObjectOfType<PhidgetHubManager>();
+            phidgetHubManager = FindFirstObjectByType<PhidgetHubManager>();
 
             if (phidgetHubManager != null) 
                 return;
